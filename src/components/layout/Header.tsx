@@ -1,69 +1,69 @@
 import Link from "next/link";
-import { Search, Grid, Settings } from "lucide-react";
+import { Search, Mic, X, Grid, Settings } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export function Header() {
     return (
-        <header className="sticky top-0 z-50 w-full bg-background border-b border-border/40">
-            <div className="flex items-center justify-between px-4 py-3 md:px-6">
-                <div className="flex items-center gap-4 md:gap-8 flex-1">
-                    <Link href="/" className="flex items-center gap-2 font-heading font-medium text-xl tracking-tighter">
-                        <span className="text-blue-500">G</span>
-                        <span className="text-red-500">f</span>
-                        <span className="text-yellow-500">o</span>
-                        <span className="text-blue-500">l</span>
-                        <span className="text-green-500">i</span>
-                        <span className="text-red-500">o</span>
+        <header className="sticky top-0 z-50 w-full bg-background">
+            <div className="flex items-center justify-between px-6 py-5 md:pl-8 md:pr-4">
+                <div className="flex items-center gap-8 md:gap-12 flex-1">
+                    {/* Logo */}
+                    <Link href="/" className="flex items-center gap-1 font-heading font-medium text-2xl tracking-tighter pb-1">
+                        <span className="text-[#4285f4]">S</span>
+                        <span className="text-[#ea4335]">e</span>
+                        <span className="text-[#fbbc04]">a</span>
+                        <span className="text-[#4285f4]">r</span>
+                        <span className="text-[#34a853]">c</span>
+                        <span className="text-[#ea4335]">h</span>
                     </Link>
 
-                    <div className="hidden md:flex max-w-2xl w-full relative">
-                        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                            <Search className="h-4 w-4" />
-                        </div>
-                        <Input
-                            type="text"
-                            defaultValue="Shaswat Raj"
-                            className="w-full pl-10 h-11 rounded-full bg-secondary/50 border-transparent shadow-none hover:bg-secondary/80 focus-visible:bg-background focus-visible:shadow-[0_1px_6px_rgba(32,33,36,0.28)] transition-all font-medium"
-                        />
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                            {/* Clear X or Mic icon could go here */}
+                    {/* Desktop Search Bar */}
+                    <div className="hidden md:flex flex-1 max-w-[690px] relative">
+                        <div className="relative w-full group">
+                            <input
+                                type="text"
+                                defaultValue="Shaswat Raj"
+                                className="w-full h-[46px] pl-5 pr-12 rounded-[24px] bg-white dark:bg-[#303134] text-foreground border border-transparent shadow-[0_1px_6px_0_rgba(32,33,36,0.28)] hover:shadow-[0_2px_8px_0_rgba(32,33,36,0.28)] focus:outline-none focus:shadow-[0_2px_8px_0_rgba(32,33,36,0.28)] transition-shadow text-[16px]"
+                            />
+
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3 text-[#4285f4] dark:text-[#8ab4f8]">
+                                <X className="h-5 w-5 text-[#70757a] dark:text-[#9aa0a6] cursor-pointer border-r border-[#dadce0] dark:border-[#5f6368] pr-3 box-content hidden sm:block" />
+                                <Mic className="h-5 w-5 cursor-pointer hidden sm:block" />
+                                <Search className="h-5 w-5 text-[#4285f4] dark:text-[#8ab4f8] cursor-pointer" />
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-2 md:gap-4">
-                    {/* Mobile Search Icon (visible only on small screens) */}
-                    <Button variant="ghost" size="icon" className="md:hidden">
-                        <Search className="h-5 w-5" />
+                {/* Right Actions */}
+                <div className="flex items-center gap-2 md:gap-4 pl-4">
+                    <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-secondary/50 rounded-full h-10 w-10">
+                        <Settings className="h-5 w-5 text-[#5f6368] dark:text-[#e8eaed]" />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="hidden sm:flex hover:bg-secondary/50 rounded-full h-10 w-10">
+                        <Grid className="h-5 w-5 text-[#5f6368] dark:text-[#e8eaed]" />
                     </Button>
 
-                    <Button variant="ghost" size="icon" className="hidden sm:flex">
-                        <Settings className="h-5 w-5 text-muted-foreground" />
-                    </Button>
-                    <Button variant="ghost" size="icon" className="hidden sm:flex">
-                        <Grid className="h-5 w-5 text-muted-foreground" />
-                    </Button>
-
-                    <Avatar className="h-8 w-8 cursor-pointer hover:ring-4 hover:ring-secondary/50 transition-all">
+                    <Avatar className="h-8 w-8 cursor-pointer ring-4 ring-[#f1f3f4] dark:ring-[#303134]">
                         <AvatarImage src="https://github.com/shadcn.png" alt="@user" />
                         <AvatarFallback>SR</AvatarFallback>
                     </Avatar>
                 </div>
             </div>
 
-            {/* Mobile Search Bar (Full Width) */}
+            {/* Mobile Search Bar */}
             <div className="px-4 pb-3 md:hidden">
                 <div className="relative">
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                        <Search className="h-4 w-4" />
-                    </div>
-                    <Input
+                    <input
                         type="text"
                         defaultValue="Shaswat Raj"
-                        className="w-full pl-10 h-10 rounded-full bg-secondary/50 border-transparent shadow-none font-medium"
+                        className="w-full h-[44px] pl-4 pr-12 rounded-[22px] bg-white dark:bg-[#303134] text-foreground border border-transparent shadow-[0_1px_6px_0_rgba(32,33,36,0.28)] focus:outline-none text-[16px]"
                     />
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#4285f4] dark:text-[#8ab4f8]">
+                        <Search className="h-5 w-5" />
+                    </div>
                 </div>
             </div>
         </header>
