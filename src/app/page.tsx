@@ -110,7 +110,7 @@ function HomeContent() {
                       <a href={siteConfig.socials.linkedin} className="flex flex-col items-center gap-1 min-w-[60px]">
                         <div className="h-10 w-10 rounded-full border border-border/40 flex items-center justify-center bg-white dark:bg-[#303134]">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src="https://static.licdn.com/sc/h/akt4ae504epesldzj74dzred8" alt="LI" className="h-5 w-5" />
+                          <img src="https://www.google.com/s2/favicons?domain=https://linkedin.com/&sz=40" alt="LI" className="h-5 w-5" />
                         </div>
                         <span className="text-[12px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline">LinkedIn</span>
                       </a>
@@ -266,7 +266,8 @@ function AllTab() {
       >
         <ResultCard
           title={`GitHub: ${siteConfig.name} (${projectsConfig.length} repositories)`}
-          url="https://github.com › shaswatraj"
+          url={siteConfig.socials.github}
+          displayUrl="https://github.com › sh20raj"
           description={`Follow their code on GitHub. ${projectsConfig.slice(0, 2).map(p => p.name).join(", ")} and more open source contributions.`}
           siteName="GitHub"
           favicon="https://www.google.com/s2/favicons?domain=github.com/&sz=40"
@@ -320,7 +321,8 @@ function AllTab() {
       >
         <ResultCard
           title={`Latest Updates from ${siteConfig.name}`}
-          url="https://twitter.com › shaswatraj"
+          url={siteConfig.socials.twitter}
+          displayUrl="https://twitter.com › sh20raj"
           description=""
           siteName="X (Twitter)"
           favicon="https://abs.twimg.com/favicons/twitter.3.ico"
@@ -348,7 +350,8 @@ function AllTab() {
       >
         <ResultCard
           title="Top Projects & Case Studies"
-          url={`${siteConfig.websiteUrl} › projects`}
+          url="/?tab=projects"
+          displayUrl={`${siteConfig.websiteUrl} › projects`}
           description="Explore high-impact projects built with Next.js, React, and Cloudflare."
           siteName={siteConfig.name}
           favicon={siteConfig.avatarUrl}
@@ -372,7 +375,8 @@ function AllTab() {
       >
         <ResultCard
           title={`${siteConfig.name} - Senior Frontend Engineer - TechCorp | LinkedIn`}
-          url="https://in.linkedin.com › ... › Web Developers"
+          url={siteConfig.socials.linkedin}
+          displayUrl="https://in.linkedin.com › ... › Web Developers"
           description={`View ${siteConfig.name}'s profile on LinkedIn, the world's largest professional community. ${siteConfig.name} has 5 jobs listed on their profile.`}
           siteName="LinkedIn"
           favicon="https://www.google.com/s2/favicons?domain=https://linkedin.com/&sz=40"

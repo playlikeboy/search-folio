@@ -30,9 +30,9 @@ export const siteConfig = {
 
     // Social links
     socials: {
-        twitter: "https://twitter.com/shaswatraj",
+        twitter: "https://twitter.com/sh20raj",
         github: "https://github.com/sh20raj",
-        linkedin: "https://linkedin.com/in/shaswatraj",
+        linkedin: "https://linkedin.com/in/sh20raj",
         email: "mailto:hello@sh20raj.github.io",
     },
 };
@@ -123,7 +123,7 @@ export const contactConfig = {
     // Buttons
     primaryButton: {
         text: "Book a Call",
-        url: "https://calendly.com/shaswatraj",
+        url: "https://calendly.com/sh20raj",
     },
     secondaryButton: {
         text: "Send Email",

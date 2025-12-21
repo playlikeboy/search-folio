@@ -156,7 +156,7 @@ MIT License - Use for personal and commercial projects.
 
 ## 🙌 Credits
 
-Built with ❤️ by [Shaswat Raj](https://twitter.com/shaswatraj)
+Built with ❤️ by [Shaswat Raj](https://twitter.com/sh20raj)
 
 **Tech Stack**: Next.js • Tailwind CSS • Framer Motion • shadcn/ui
 

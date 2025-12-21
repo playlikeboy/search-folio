@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface ResultCardProps {
     url: string;
+    displayUrl?: string;
     title: string;
     description: string;
     siteName?: string;
@@ -14,6 +15,7 @@ interface ResultCardProps {
 
 export function ResultCard({
     url,
+    displayUrl,
     title,
     description,
     siteName = "Shaswat Raj",
@@ -34,7 +36,7 @@ export function ResultCard({
                     </div>
                     <div className="flex flex-col leading-tight">
                         <span className="text-[#202124] dark:text-[#dadce0] text-sm font-normal">{siteName}</span>
-                        <span className="text-[#4d5156] dark:text-[#bdc1c6] text-xs truncate max-w-[300px]">{url}</span>
+                        <span className="text-[#4d5156] dark:text-[#bdc1c6] text-xs truncate max-w-[300px]">{displayUrl || url}</span>
                     </div>
                     <MoreVertical className="ml-auto h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
