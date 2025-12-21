@@ -138,7 +138,7 @@ export const imagesConfig = [
 ];
 
 export const aiInsightConfig = {
-    enabled: false, // Set to true if you have AI integration
+    enabled: true, // Set to true if you have AI integration
     questions: [
         "What is Shaswat best at?",
         "Show his best project",

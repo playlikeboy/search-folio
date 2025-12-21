@@ -10,19 +10,27 @@ import { useState } from "react";
 export function AIInsightTab() {
     const [question, setQuestion] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [answer, setAnswer] = useState<string | null>(null);
 
     // Placeholder responses (replace with real AI integration)
     const mockResponses: Record<string, string> = {
         "What is he best at?": `${siteConfig.name} specializes in building high-performance web applications with React, Next.js, and modern cloud infrastructure. His key strengths include: clean UI/UX design, scalable architecture, and rapid prototyping.`,
         "Show his best project": `SearchFolio is ${siteConfig.name}'s most innovative project - a portfolio builder that mimics Google Search. It demonstrates his creativity in UI design and deep understanding of web technologies.`,
         "Why should I hire him?": `${siteConfig.name} brings a unique combination of technical expertise and entrepreneurial thinking. With 5+ years of experience and multiple successful products, he can contribute immediately to your team while bringing fresh perspectives on product development.`,
+        "default": `I don't have a specific answer for that yet, but ${siteConfig.name} is always open to discussing new opportunities and technologies. Feel free to reach out via the Contact tab!`,
     };
 
     const handleAsk = () => {
         if (!aiInsightConfig.enabled) return;
+        if (!question.trim()) return;
+
         setIsLoading(true);
+        setAnswer(null);
+
         // Simulate API call
         setTimeout(() => {
+            const response = mockResponses[question] || mockResponses["default"];
+            setAnswer(response);
             setIsLoading(false);
         }, 1500);
     };
@@ -56,6 +64,7 @@ export function AIInsightTab() {
                             placeholder={`Ask about ${siteConfig.name}...`}
                             value={question}
                             onChange={(e) => setQuestion(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && handleAsk()}
                             className="pr-12 h-12 rounded-full bg-secondary/50"
                         />
                         <Button
@@ -86,8 +95,16 @@ export function AIInsightTab() {
                         </div>
                     </div>
 
+                    {/* Loading State */}
+                    {isLoading && (
+                        <div className="flex items-center gap-2 text-muted-foreground text-sm py-4">
+                            <Sparkles className="h-4 w-4 animate-pulse" />
+                            <span>Thinking...</span>
+                        </div>
+                    )}
+
                     {/* Mock response display */}
-                    {question && mockResponses[question] && (
+                    {answer && (
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -97,7 +114,7 @@ export function AIInsightTab() {
                                 <Sparkles className="h-4 w-4" />
                                 AI Featured Snippet
                             </div>
-                            <p className="text-sm">{mockResponses[question]}</p>
+                            <p className="text-sm leading-relaxed text-[#202124] dark:text-[#e8eaed]">{answer}</p>
                         </motion.div>
                     )}
                 </>
