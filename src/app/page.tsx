@@ -58,93 +58,95 @@ function HomeContent() {
           About {themeConfig.searchStats.results} results ({themeConfig.searchStats.time} seconds)
         </div>
 
-        {/* Knowledge Panel (Right Side - Desktop) */}
-        {activeTab === "all" && (
-          <div className="hidden lg:block float-right w-[370px] ml-12 mb-8">
-            <div className="border border-border/60 rounded-[8px] overflow-hidden bg-card">
-              {/* Top Image Section */}
-              <div className="flex gap-1 p-2 pb-0">
-                <div className="h-32 flex-1 rounded-l-[4px] bg-blue-100 dark:bg-blue-900/20 overflow-hidden relative">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={siteConfig.avatarUrl} alt={siteConfig.name} className="object-cover w-full h-full" />
-                </div>
-                <div className="h-32 w-1/3 flex flex-col gap-1">
-                  <div className="flex-1 rounded-tr-[4px] bg-secondary/50"></div>
-                  <div className="flex-1 rounded-br-[4px] bg-secondary/50"></div>
-                </div>
-              </div>
-
-              <div className="p-4">
-                <h2 className="text-[30px] font-normal leading-tight font-heading mb-1">{siteConfig.name}</h2>
-                <p className="text-[14px] text-[#70757a] dark:text-[#9aa0a6] mb-4">{siteConfig.headline}</p>
-
-                <p className="text-[14px] leading-6 mb-4">
-                  {siteConfig.bio} <a href="#" className="text-[#1a0dab] dark:text-[#8ab4f8] hover:underline">Wikipedia</a>
-                </p>
-
-                <div className="space-y-3 text-[14px]">
-                  <div className="flex gap-2">
-                    <span className="font-bold text-[#202124] dark:text-[#e8eaed]">Born:</span>
-                    <span className="text-[#202124] dark:text-[#e8eaed]">{siteConfig.location}</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="font-bold text-[#202124] dark:text-[#e8eaed]">Education:</span>
-                    <span className="text-[#1a0dab] dark:text-[#8ab4f8] hover:underline cursor-pointer">{aboutConfig.education}</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="font-bold text-[#202124] dark:text-[#e8eaed]">Organizations:</span>
-                    <span className="text-[#1a0dab] dark:text-[#8ab4f8] hover:underline cursor-pointer">TechCorp, StartUpInc</span>
-                  </div>
-                </div>
-
-                {/* Social Profiles */}
-                <div className="mt-4 pt-4 border-t border-border/40">
-                  <h3 className="text-[16px] font-normal mb-3">Profiles</h3>
-                  <div className="flex gap-3 overflow-x-auto no-scrollbar">
-                    <a href={siteConfig.socials.linkedin} className="flex flex-col items-center gap-1 min-w-[60px]">
-                      <div className="h-10 w-10 rounded-full border border-border/40 flex items-center justify-center bg-white dark:bg-[#303134]">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="https://static.licdn.com/sc/h/akt4ae504epesldzj74dzred8" alt="LI" className="h-5 w-5" />
-                      </div>
-                      <span className="text-[12px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline">LinkedIn</span>
-                    </a>
-                    <a href={siteConfig.socials.github} className="flex flex-col items-center gap-1 min-w-[60px]">
-                      <div className="h-10 w-10 rounded-full border border-border/40 flex items-center justify-center bg-white dark:bg-[#303134]">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="https://github.githubassets.com/favicons/favicon.svg" alt="GH" className="h-5 w-5" />
-                      </div>
-                      <span className="text-[12px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline">GitHub</span>
-                    </a>
-                    <a href={siteConfig.socials.twitter} className="flex flex-col items-center gap-1 min-w-[60px]">
-                      <div className="h-10 w-10 rounded-full border border-border/40 flex items-center justify-center bg-white dark:bg-[#303134]">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="https://abs.twimg.com/favicons/twitter.3.ico" alt="X" className="h-5 w-5" />
-                      </div>
-                      <span className="text-[12px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline">Twitter</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* People also search for */}
-            <div className="mt-4 border border-border/60 rounded-[8px] bg-card p-4">
-              <h3 className="text-[20px] font-normal mb-4">People also search for</h3>
-              <div className="grid grid-cols-4 gap-2">
-                {[1, 2, 3, 4].map(i => (
-                  <div key={i} className="flex flex-col gap-1 cursor-pointer group">
-                    <div className="aspect-square bg-secondary/50 rounded-[4px]"></div>
-                    <span className="text-[12px] text-[#1a0dab] dark:text-[#8ab4f8] group-hover:underline truncate">Famous Dev</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <div className="flex flex-col lg:flex-row items-start gap-12">
+          {/* Left Column: Search Results */}
+          <div className="flex flex-col w-full max-w-[600px] shrink-0">
+            {renderTabContent()}
           </div>
-        )}
 
-        {/* List Content */}
-        <div className="flex flex-col max-w-[600px]">
-          {renderTabContent()}
+          {/* Right Column: Knowledge Panel (Only on 'All' tab) */}
+          {activeTab === "all" && (
+            <div className="hidden lg:block w-[370px] shrink-0">
+              <div className="border border-border/60 rounded-[8px] overflow-hidden bg-card">
+                {/* Top Image Section */}
+                <div className="flex gap-1 p-2 pb-0">
+                  <div className="h-32 flex-1 rounded-l-[4px] bg-blue-100 dark:bg-blue-900/20 overflow-hidden relative">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={siteConfig.avatarUrl} alt={siteConfig.name} className="object-cover w-full h-full" />
+                  </div>
+                  <div className="h-32 w-1/3 flex flex-col gap-1">
+                    <div className="flex-1 rounded-tr-[4px] bg-secondary/50"></div>
+                    <div className="flex-1 rounded-br-[4px] bg-secondary/50"></div>
+                  </div>
+                </div>
+
+                <div className="p-4">
+                  <h2 className="text-[30px] font-normal leading-tight font-heading mb-1">{siteConfig.name}</h2>
+                  <p className="text-[14px] text-[#70757a] dark:text-[#9aa0a6] mb-4">{siteConfig.headline}</p>
+
+                  <p className="text-[14px] leading-6 mb-4">
+                    {siteConfig.bio} <a href="#" className="text-[#1a0dab] dark:text-[#8ab4f8] hover:underline">Wikipedia</a>
+                  </p>
+
+                  <div className="space-y-3 text-[14px]">
+                    <div className="flex gap-2">
+                      <span className="font-bold text-[#202124] dark:text-[#e8eaed]">Born:</span>
+                      <span className="text-[#202124] dark:text-[#e8eaed]">{siteConfig.location}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-bold text-[#202124] dark:text-[#e8eaed]">Education:</span>
+                      <span className="text-[#1a0dab] dark:text-[#8ab4f8] hover:underline cursor-pointer">{aboutConfig.education}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="font-bold text-[#202124] dark:text-[#e8eaed]">Organizations:</span>
+                      <span className="text-[#1a0dab] dark:text-[#8ab4f8] hover:underline cursor-pointer">TechCorp, StartUpInc</span>
+                    </div>
+                  </div>
+
+                  {/* Social Profiles */}
+                  <div className="mt-4 pt-4 border-t border-border/40">
+                    <h3 className="text-[16px] font-normal mb-3">Profiles</h3>
+                    <div className="flex gap-3 overflow-x-auto no-scrollbar">
+                      <a href={siteConfig.socials.linkedin} className="flex flex-col items-center gap-1 min-w-[60px]">
+                        <div className="h-10 w-10 rounded-full border border-border/40 flex items-center justify-center bg-white dark:bg-[#303134]">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src="https://static.licdn.com/sc/h/akt4ae504epesldzj74dzred8" alt="LI" className="h-5 w-5" />
+                        </div>
+                        <span className="text-[12px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline">LinkedIn</span>
+                      </a>
+                      <a href={siteConfig.socials.github} className="flex flex-col items-center gap-1 min-w-[60px]">
+                        <div className="h-10 w-10 rounded-full border border-border/40 flex items-center justify-center bg-white dark:bg-[#303134]">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src="https://github.githubassets.com/favicons/favicon.svg" alt="GH" className="h-5 w-5" />
+                        </div>
+                        <span className="text-[12px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline">GitHub</span>
+                      </a>
+                      <a href={siteConfig.socials.twitter} className="flex flex-col items-center gap-1 min-w-[60px]">
+                        <div className="h-10 w-10 rounded-full border border-border/40 flex items-center justify-center bg-white dark:bg-[#303134]">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src="https://abs.twimg.com/favicons/twitter.3.ico" alt="X" className="h-5 w-5" />
+                        </div>
+                        <span className="text-[12px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline">Twitter</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* People also search for */}
+              <div className="mt-4 border border-border/60 rounded-[8px] bg-card p-4">
+                <h3 className="text-[20px] font-normal mb-4">People also search for</h3>
+                <div className="grid grid-cols-4 gap-2">
+                  {[1, 2, 3, 4].map(i => (
+                    <div key={i} className="flex flex-col gap-1 cursor-pointer group">
+                      <div className="aspect-square bg-secondary/50 rounded-[4px]"></div>
+                      <span className="text-[12px] text-[#1a0dab] dark:text-[#8ab4f8] group-hover:underline truncate">Famous Dev</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </main>
 
