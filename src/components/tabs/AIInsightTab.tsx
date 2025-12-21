@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { aiInsightConfig, siteConfig } from "@/config/portfolio";
+import { aiInsightConfig, siteConfig, projectsConfig, experienceConfig, contactConfig } from "@/config/portfolio";
 import { motion } from "framer-motion";
 import { Sparkles, Send } from "lucide-react";
 import { useState } from "react";
@@ -28,20 +28,30 @@ export function AIInsightTab() {
         setAnswer(null);
 
         try {
-            // Construct system prompt with context about the user
+            // Construct detailed system prompt with full context
+            const contextData = {
+                profile: siteConfig,
+                projects: projectsConfig,
+                experience: experienceConfig,
+                contact: contactConfig
+            };
+
             const systemPrompt = `You are an AI assistant for ${siteConfig.name}'s portfolio website. 
-            Here is some context about ${siteConfig.name}:
-            - Headline: ${siteConfig.headline}
-            - Bio: ${siteConfig.bio}
-            - Location: ${siteConfig.location}
             
-            Answer questions as if you are helpful and knowledgeable about ${siteConfig.name}. 
-            Keep answers concise (under 50 words) and professional yet friendly. 
-            If the answer isn't in the context, use your general knowledge but mention you are an AI.`;
+            Here is the COMPLETE context about ${siteConfig.name}:
+            ${JSON.stringify(contextData, null, 2)}
+            
+            INSTRUCTIONS:
+            - Answer questions acting as a helpful, knowledgeable assistant for ${siteConfig.name}.
+            - Use the provided context (Projects, Experience, Bio) to answer specific questions.
+            - If asked about "best project", mention specific details from the projects list.
+            - Keep answers concise (under 60 words) and professional yet friendly.
+            - If the answer isn't in the context, use your general knowledge but mention you are an AI.`;
 
             const encodedPrompt = encodeURIComponent(question);
             const encodedSystem = encodeURIComponent(systemPrompt);
 
+            // Using OpenAI model via Pollinations
             const response = await fetch(`https://text.pollinations.ai/${encodedPrompt}?model=openai&system=${encodedSystem}`);
 
             if (!response.ok) throw new Error("Failed to fetch answer");
@@ -133,7 +143,7 @@ export function AIInsightTab() {
                         >
                             <div className="flex items-center gap-2 text-blue-500 text-sm font-medium mb-2">
                                 <Sparkles className="h-4 w-4" />
-                                AI Featured Snippet
+                                <AI_Featured_Snippet />
                             </div>
                             <p className="text-sm leading-relaxed text-[#202124] dark:text-[#e8eaed]">{answer}</p>
                         </motion.div>
@@ -142,4 +152,10 @@ export function AIInsightTab() {
             )}
         </div>
     );
+}
+
+function AI_Featured_Snippet() {
+    return (
+        <span>AI Featured Snippet</span>
+    )
 }
