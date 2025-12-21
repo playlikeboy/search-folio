@@ -1,125 +1,168 @@
-# SearchFolio 🔍
+# 🔍 SearchFolio
 
-A **Google Search-themed portfolio** that makes recruiters and clients instantly understand who you are. Your personal SEO storytelling tool.
+### A Google Search-Themed Portfolio That Converts
 
 > *"When people search your name, this is what they see."*
 
-![SearchFolio Demo](./docs/demo.png)
+**SearchFolio** transforms your portfolio into a familiar, high-converting Google Search experience. Recruiters and clients instantly understand who you are.
+
+---
+
+## 🌟 Why Buy SearchFolio?
+
+| Feature | Benefit |
+|---------|---------|
+| **Instant Recognition** | Google UI is universally familiar = zero learning curve for visitors |
+| **High Conversion** | Ad-styled CTAs + star ratings = more clicks, more leads |
+| **Stand Out** | 99% of portfolios look the same. You won't. |
+| **SEO Ready** | Proper meta tags, structured data, semantic HTML |
+| **Easy to Customize** | Edit 2 config files = done. No coding required. |
+| **AI-Ready** | Built-in AI Q&A tab (just add your API key) |
+
+---
 
 ## ✨ Features
 
-- **Google SERP Layout** - Familiar, professional, instantly recognizable
-- **Tab Navigation** - All, Projects, Experience, Proof, Images, Contact, AI Insight
-- **Dark Mode** - System-synced theming
-- **Fully Customizable** - Edit 2 config files and you're done
-- **SEO Optimized** - Proper meta tags, structured data ready
-- **Responsive** - Works perfectly on mobile and desktop
-- **Static Export** - Deploy anywhere (Cloudflare Pages, Vercel, Netlify)
+### 🎨 Visual
+- **Google SERP Layout** - Header, tabs, results, knowledge panel
+- **Star Ratings & Reviews** - Social proof that converts
+- **Featured Snippets** - Highlight your best content
+- **"People Also Ask"** - Engage visitors longer
+- **Dark Mode** - System-synced, developer-friendly
+- **Real Favicons** - GitHub, LinkedIn, Twitter badges
 
-## 🚀 Quick Start
+### 📱 Technical
+- **Next.js 15** - Latest App Router
+- **Tailwind CSS 4** - Modern styling
+- **Framer Motion** - Smooth animations
+- **TypeScript** - Type-safe code
+- **Static Export** - Deploy anywhere
 
-### 1. Clone & Install
+### 🚀 Tabs
+1. **All** - Main SERP with rich results
+2. **Projects** - GitHub-style project cards
+3. **Experience** - LinkedIn-style timeline
+4. **Proof** - Certificates, stats, achievements
+5. **Images** - Visual portfolio gallery
+6. **Contact** - Premium CTA section
+7. **AI Insight** - Ask AI about you (optional)
+
+---
+
+## 💰 Pricing
+
+| License | Price | Includes |
+|---------|-------|----------|
+| **Personal** | $19 | Single use, lifetime updates |
+| **Developer** | $49 | Unlimited projects, priority support |
+| **Agency** | $149 | White-label, team license, 1-year support |
+
+---
+
+## 🛠️ Quick Start
 
 ```bash
-git clone https://github.com/yourusername/searchfolio.git
-cd searchfolio
-npm install
+# 1. Clone
+git clone https://github.com/SH20RAJ/search-folio.git
+
+# 2. Install
+cd searchfolio && npm install
+
+# 3. Customize (edit these files)
+# src/config/portfolio.ts → Your content
+# src/config/theme.ts → Your branding
+
+# 4. Run
+npm run dev # Open http://localhost:3000
+
+# 5. Deploy
+npm run build # Upload 'out' folder to any host
 ```
 
-### 2. Customize Your Portfolio
+---
 
-Edit these two files to personalize:
-
-**`src/config/portfolio.ts`** - Your content (name, bio, projects, experience)
-**`src/config/theme.ts`** - Visual settings (colors, logo, fonts)
-
-### 3. Run Locally
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000)
-
-### 4. Deploy
-
-```bash
-npm run build
-```
-
-Upload the `out/` folder to any static hosting provider.
-
-## 📁 Project Structure
+## 📁 What's Included
 
 ```
 searchfolio/
 ├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── page.tsx            # Main portfolio page
-│   │   ├── layout.tsx          # Root layout
-│   │   └── globals.css         # Global styles
-│   ├── components/
-│   │   ├── layout/             # Header, Tabs, Footer
-│   │   ├── search/             # ResultCard components
-│   │   ├── tabs/               # Tab content (Projects, Experience, etc.)
-│   │   └── ui/                 # shadcn/ui components
 │   ├── config/
-│   │   ├── portfolio.ts        # ⭐ YOUR CONTENT HERE
-│   │   └── theme.ts            # ⭐ YOUR BRANDING HERE
-│   └── lib/                    # Utilities
-├── public/                     # Static assets
-├── docs/                       # Documentation
-└── package.json
+│   │   ├── portfolio.ts    ← YOUR CONTENT HERE
+│   │   └── theme.ts        ← YOUR BRANDING HERE
+│   ├── components/         ← Pre-built components
+│   ├── app/                ← Next.js pages
+│   └── lib/                ← Utilities
+├── docs/
+│   ├── CUSTOMIZATION.md    ← Detailed guide
+│   └── DEPLOYMENT.md       ← Deploy anywhere
+├── public/                 ← Your images
+└── README.md
 ```
-
-## 🎨 Customization Guide
-
-### Basic Customization (5 minutes)
-
-1. Open `src/config/portfolio.ts`
-2. Replace the sample data with your own:
-   - Name, headline, bio
-   - Projects, experience, achievements
-   - Social links, contact info
-
-That's it! Your portfolio is ready.
-
-### Advanced Customization
-
-See [CUSTOMIZATION.md](./docs/CUSTOMIZATION.md) for:
-- Custom themes and colors
-- Adding new tabs
-- Modifying component styles
-- AI integration setup
-
-## 🌐 Deployment Options
-
-| Platform | Guide |
-|----------|-------|
-| Cloudflare Pages | [Deploy Guide](./docs/DEPLOYMENT.md#cloudflare-pages) |
-| Vercel | [Deploy Guide](./docs/DEPLOYMENT.md#vercel) |
-| Netlify | [Deploy Guide](./docs/DEPLOYMENT.md#netlify) |
-| GitHub Pages | [Deploy Guide](./docs/DEPLOYMENT.md#github-pages) |
-
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 15 (App Router)
-- **Styling**: Tailwind CSS 4
-- **UI Components**: shadcn/ui
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Fonts**: Inter, Roboto
-
-## 📜 License
-
-MIT License - Use freely for personal and commercial projects.
-
-## 🤝 Support
-
-- [Documentation](./docs/)
-- [Issues](https://github.com/yourusername/searchfolio/issues)
-- [Discussions](https://github.com/yourusername/searchfolio/discussions)
 
 ---
 
-Made with ❤️ by [Shaswat Raj](https://shaswatraj.com)
+## 🎯 Perfect For
+
+- **Developers** looking to stand out
+- **Designers** showcasing creativity
+- **Freelancers** wanting more clients
+- **Students** applying for jobs
+- **Founders** building personal brand
+
+---
+
+## 🔧 Customization
+
+### Basic (5 minutes)
+Edit `src/config/portfolio.ts`:
+- Your name, bio, headline
+- Projects, experience, skills
+- Social links
+
+### Advanced
+- Add new tabs
+- Custom themes
+- AI integration
+- See `docs/CUSTOMIZATION.md`
+
+---
+
+## 🌐 Deploy Options
+
+| Platform | Difficulty | Cost |
+|----------|------------|------|
+| Cloudflare Pages | ⭐ Easy | Free |
+| Vercel | ⭐ Easy | Free |
+| Netlify | ⭐ Easy | Free |
+| GitHub Pages | ⭐⭐ Medium | Free |
+
+See `docs/DEPLOYMENT.md` for step-by-step guides.
+
+---
+
+## 💬 Support
+
+- 📖 [Documentation](./docs/)
+- 🐛 [Report Issues](https://github.com/yourusername/searchfolio/issues)
+- 💌 Email: support@searchfolio.dev
+
+---
+
+## 📜 License
+
+MIT License - Use for personal and commercial projects.
+
+---
+
+## 🙌 Credits
+
+Built with ❤️ by [Shaswat Raj](https://twitter.com/shaswatraj)
+
+**Tech Stack**: Next.js • Tailwind CSS • Framer Motion • shadcn/ui
+
+---
+
+<p align="center">
+  <b>Stop blending in. Start standing out.</b><br>
+  <a href="https://searchfolio-demo.pages.dev">View Live Demo →</a>
+</p>
