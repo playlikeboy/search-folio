@@ -20,19 +20,40 @@ export function AIInsightTab() {
         "default": `I don't have a specific answer for that yet, but ${siteConfig.name} is always open to discussing new opportunities and technologies. Feel free to reach out via the Contact tab!`,
     };
 
-    const handleAsk = () => {
+    const handleAsk = async () => {
         if (!aiInsightConfig.enabled) return;
         if (!question.trim()) return;
 
         setIsLoading(true);
         setAnswer(null);
 
-        // Simulate API call
-        setTimeout(() => {
-            const response = mockResponses[question] || mockResponses["default"];
-            setAnswer(response);
+        try {
+            // Construct system prompt with context about the user
+            const systemPrompt = `You are an AI assistant for ${siteConfig.name}'s portfolio website. 
+            Here is some context about ${siteConfig.name}:
+            - Headline: ${siteConfig.headline}
+            - Bio: ${siteConfig.bio}
+            - Location: ${siteConfig.location}
+            
+            Answer questions as if you are helpful and knowledgeable about ${siteConfig.name}. 
+            Keep answers concise (under 50 words) and professional yet friendly. 
+            If the answer isn't in the context, use your general knowledge but mention you are an AI.`;
+
+            const encodedPrompt = encodeURIComponent(question);
+            const encodedSystem = encodeURIComponent(systemPrompt);
+
+            const response = await fetch(`https://text.pollinations.ai/${encodedPrompt}?model=openai&system=${encodedSystem}`);
+
+            if (!response.ok) throw new Error("Failed to fetch answer");
+
+            const data = await response.text();
+            setAnswer(data);
+        } catch (error) {
+            console.error("AI Error:", error);
+            setAnswer("I'm having trouble connecting to my brain right now. Please try again later!");
+        } finally {
             setIsLoading(false);
-        }, 1500);
+        }
     };
 
     return (
