@@ -17,8 +17,36 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "SearchFolio",
   description: "A portfolio that looks like a search engine.",
+  keywords: ["portfolio", "search engine", "developer", "web development", "SEO"],
+  authors: [{ name: "SearchFolio Team" }],
   icons: {
     icon: "/favicon.ico",
+  },
+  openGraph: {
+    title: "SearchFolio",
+    description: "A portfolio that looks like a search engine.",
+    url: "https://searchfolio-demo.pages.dev/",
+    siteName: "SearchFolio",
+    images: [
+      {
+        url: "https://img.youtube.com/vi/uu3lBlhAgo4/maxresdefault.jpg",
+        width: 1280,
+        height: 720,
+        alt: "SearchFolio Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SearchFolio",
+    description: "A portfolio that looks like a search engine.",
+    images: ["https://img.youtube.com/vi/uu3lBlhAgo4/maxresdefault.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
