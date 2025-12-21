@@ -23,7 +23,7 @@ export const siteConfig = {
     avatarUrl: "https://github.com/shadcn.png",
 
     // Your personal website URL
-    websiteUrl: "https://shaswatraj.com",
+    websiteUrl: "https://sh20raj.github.io",
 
     // Location (shown in footer like Google does)
     location: "India",
@@ -33,7 +33,7 @@ export const siteConfig = {
         twitter: "https://twitter.com/shaswatraj",
         github: "https://github.com/shaswatraj",
         linkedin: "https://linkedin.com/in/shaswatraj",
-        email: "mailto:hello@shaswatraj.com",
+        email: "mailto:hello@sh20raj.github.io",
     },
 };
 
@@ -127,7 +127,7 @@ export const contactConfig = {
     },
     secondaryButton: {
         text: "Send Email",
-        url: "mailto:hello@shaswatraj.com",
+        url: "mailto:hello@sh20raj.github.io",
     },
 };
 
