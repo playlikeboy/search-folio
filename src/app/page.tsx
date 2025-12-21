@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Tabs } from "@/components/layout/Tabs";
 import { Footer } from "@/components/layout/Footer";
@@ -9,7 +10,8 @@ import { ResultCard } from "@/components/search/ResultCard";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Star, GitFork, Eye, Globe, MapPin, Link as LinkIcon, MoreHorizontal } from "lucide-react";
+import { Star, GitFork, Eye, Globe, MapPin, Link as LinkIcon, MoreHorizontal, ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { siteConfig, aboutConfig, projectsConfig, experienceConfig, contactConfig } from "@/config/portfolio";
 import { themeConfig } from "@/config/theme";
 import { motion } from "framer-motion";
@@ -153,8 +155,49 @@ function HomeContent() {
 
 // "All" tab content with OG Google organic look
 function AllTab() {
+  const [expandedQuestion, setExpandedQuestion] = useState<string | null>(null);
+
+  const toggleQuestion = (question: string) => {
+    setExpandedQuestion(expandedQuestion === question ? null : question);
+  };
+
+  const peopleAlsoAsk = [
+    {
+      q: `What is ${siteConfig.name} best at?`,
+      a: `${siteConfig.name} specializes in full-stack development, particularly with Next.js, React, and Cloudflare ecosystem. They have a strong focus on high-performance web applications and UI/UX design.`
+    },
+    {
+      q: `How can I hire ${siteConfig.name}?`,
+      a: `You can hire ${siteConfig.name} by visiting the Contact tab or reaching out via LinkedIn. They are currently available for freelance projects and consulting.`
+    },
+    {
+      q: `What is SearchFolio?`,
+      a: "SearchFolio is a portfolio template designed to look like a search engine results page, helping developers stand out with a unique, familiar, and high-converting presentation."
+    }
+  ];
+
   return (
     <>
+      {/* 0. Sponsored Ad - Buy Template */}
+      <div className="flex flex-col gap-1 mb-8 max-w-[600px]">
+        <div className="flex items-center gap-1 text-[14px] text-[#202124] dark:text-[#e8eaed] mb-1">
+          <span className="font-bold">Sponsored</span>
+          <span className="text-[#4d5156] dark:text-[#bdc1c6] mx-1">·</span>
+          <span className="text-[#4d5156] dark:text-[#bdc1c6] text-[12px]">sh20raj.gumroad.com/l/searchfolio</span>
+        </div>
+        <a href="https://sh20raj.gumroad.com/l/searchfolio" target="_blank" className="text-[20px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline cursor-pointer block leading-normal mb-1">
+          Buy SearchFolio - The Ultimate Portfolio Template
+        </a>
+        <div className="text-[14px] text-[#4d5156] dark:text-[#bdc1c6] leading-relaxed">
+          <span className="font-bold text-[#202124] dark:text-[#e8eaed]">Stand out instantly.</span> Transform your personal brand with a high-converting, familiar Google Search interface. Easy to customize, SEO-ready, and dark mode native.
+        </div>
+        <div className="mt-2 flex gap-3">
+          <a href="https://sh20raj.gumroad.com/l/searchfolio" target="_blank" className="flex items-center gap-1 text-[14px] font-medium text-[#1a0dab] dark:text-[#8ab4f8] hover:underline decoration-1">
+            Get the Template <ChevronDown className="h-4 w-4 rotate-[-90deg]" />
+          </a>
+        </div>
+      </div>
+
       {/* 1. Main Website Result */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
@@ -168,28 +211,51 @@ function AllTab() {
           favicon={siteConfig.avatarUrl}
         >
           {/* SiteLinks (Indented results) */}
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-8 pl-0">
-            <div>
-              <a href="#" className="text-[16px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline block mb-0.5">Projects</a>
-              <p className="text-[14px] text-[#4d5156] dark:text-[#bdc1c6] line-clamp-2">View 50+ open source repositories and case studies.</p>
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 pl-0">
+            <div className="flex flex-col gap-1">
+              <Link href="/?tab=projects" className="text-[16px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline leading-tight">Projects</Link>
+              <p className="text-[14px] text-[#4d5156] dark:text-[#bdc1c6] leading-snug line-clamp-2 max-w-[280px]">View 50+ open source repositories and case studies.</p>
             </div>
-            <div>
-              <a href="#" className="text-[16px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline block mb-0.5">About Me</a>
-              <p className="text-[14px] text-[#4d5156] dark:text-[#bdc1c6] line-clamp-2">Full stack developer with passion for UI/UX.</p>
+            <div className="flex flex-col gap-1">
+              <Link href="/?tab=all" className="text-[16px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline leading-tight">About Me</Link>
+              <p className="text-[14px] text-[#4d5156] dark:text-[#bdc1c6] leading-snug line-clamp-2 max-w-[280px]">Full stack developer with passion for UI/UX.</p>
             </div>
-            <div>
-              <a href="#" className="text-[16px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline block mb-0.5">Contact</a>
-              <p className="text-[14px] text-[#4d5156] dark:text-[#bdc1c6] line-clamp-2">Get in touch for freelance work or consulting.</p>
+            <div className="flex flex-col gap-1">
+              <Link href="/?tab=contact" className="text-[16px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline leading-tight">Contact</Link>
+              <p className="text-[14px] text-[#4d5156] dark:text-[#bdc1c6] leading-snug line-clamp-2 max-w-[280px]">Get in touch for freelance work or consulting.</p>
             </div>
-            <div>
-              <a href="#" className="text-[16px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline block mb-0.5">Blog</a>
-              <p className="text-[14px] text-[#4d5156] dark:text-[#bdc1c6] line-clamp-2">Read my latest thoughts on tech.</p>
+            <div className="flex flex-col gap-1">
+              <Link href="/?tab=ai" className="text-[16px] text-[#1a0dab] dark:text-[#8ab4f8] hover:underline leading-tight">AI Insight</Link>
+              <p className="text-[14px] text-[#4d5156] dark:text-[#bdc1c6] leading-snug line-clamp-2 max-w-[280px]">Ask our AI agent specific questions about my work.</p>
             </div>
           </div>
         </ResultCard>
       </motion.div>
 
-      {/* 2. GitHub Result (List View) */}
+      {/* 2. People Also Ask (Accordion) */}
+      <div className="mb-8 border-y border-border/40 py-0">
+        <h3 className="text-[20px] text-[#202124] dark:text-[#e8eaed] font-normal py-4 cursor-default">People also ask</h3>
+        {peopleAlsoAsk.map((item, i) => (
+          <div key={i} className="border-t border-border/40 first:border-t-0">
+            <div
+              className="py-3 flex justify-between cursor-pointer hover:bg-transparent group items-center"
+              onClick={() => toggleQuestion(item.q)}
+            >
+              <span className="text-[14px] text-[#202124] dark:text-[#e8eaed] group-hover:underline">{item.q}</span>
+              <span className="p-2 rounded-full bg-secondary/50 dark:bg-[#303134]">
+                <ChevronDown className={cn("h-4 w-4 text-[#70757a] dark:text-[#9aa0a6] transition-transform duration-200", expandedQuestion === item.q ? "rotate-180" : "")} />
+              </span>
+            </div>
+            {expandedQuestion === item.q && (
+              <div className="pb-4 text-[14px] text-[#4d5156] dark:text-[#bdc1c6] leading-relaxed animate-in fade-in slide-in-from-top-1">
+                {item.a}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* 3. GitHub Result (List View) */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -200,7 +266,7 @@ function AllTab() {
           url="https://github.com › shaswatraj"
           description={`Follow their code on GitHub. ${projectsConfig.slice(0, 2).map(p => p.name).join(", ")} and more open source contributions.`}
           siteName="GitHub"
-          favicon="https://github.githubassets.com/favicons/favicon.svg"
+          favicon="https://www.google.com/s2/favicons?domain=github.com/&sz=40"
         >
           {/* GitHub Star Rating (Subtle) */}
           <div className="flex items-center gap-1 text-[12px] text-[#70757a] dark:text-[#9aa0a6] mb-1">
@@ -209,21 +275,6 @@ function AllTab() {
           </div>
         </ResultCard>
       </motion.div>
-
-      {/* 3. People Also Ask (Accordion) */}
-      <div className="mb-8 border-y border-border/40 py-2">
-        <h3 className="text-[20px] text-[#202124] dark:text-[#e8eaed] font-normal px-0 mb-3 ml-0">People also ask</h3>
-        {[
-          `What is ${siteConfig.name} best at?`,
-          `How can I hire ${siteConfig.name}?`,
-          `What is SearchFolio?`
-        ].map((q, i) => (
-          <div key={i} className="py-2.5 px-0 flex justify-between cursor-pointer hover:bg-transparent border-t first:border-t-0 border-border/20 group">
-            <span className="text-[14px] text-[#202124] dark:text-[#e8eaed] group-hover:underline">{q}</span>
-            <MoreHorizontal className="h-4 w-4 text-[#70757a] dark:text-[#9aa0a6] opacity-50" />
-          </div>
-        ))}
-      </div>
 
       {/* 4. Custom Projects Result */}
       <motion.div
@@ -236,11 +287,12 @@ function AllTab() {
           url={`${siteConfig.websiteUrl} › projects`}
           description="Explore high-impact projects built with Next.js, React, and Cloudflare."
           siteName={siteConfig.name}
+          favicon={siteConfig.avatarUrl}
         >
           <div className="mt-2 text-sm text-[#4d5156] dark:text-[#bdc1c6]">
             {projectsConfig.slice(0, 3).map((p, i) => (
               <span key={i}>
-                <a href="#" className="text-[#1a0dab] dark:text-[#8ab4f8] hover:underline">{p.name}</a>
+                <Link href="/?tab=projects" className="text-[#1a0dab] dark:text-[#8ab4f8] hover:underline">{p.name}</Link>
                 {i < 2 && " • "}
               </span>
             ))}
@@ -259,7 +311,7 @@ function AllTab() {
           url="https://in.linkedin.com › ... › Web Developers"
           description={`View ${siteConfig.name}'s profile on LinkedIn, the world's largest professional community. ${siteConfig.name} has 5 jobs listed on their profile.`}
           siteName="LinkedIn"
-          favicon="https://static.licdn.com/sc/h/akt4ae504epesldzj74dzred8"
+          favicon="https://www.google.com/s2/favicons?domain=https://linkedin.com/&sz=40"
         />
       </motion.div>
 
