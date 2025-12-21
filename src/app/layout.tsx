@@ -15,7 +15,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "SearchFolio",
+  title: "SearchFolio - Portfolio that looks like a search result",
   description: "A portfolio that looks like a search engine.",
   keywords: ["portfolio", "search engine", "developer", "web development", "SEO"],
   authors: [{ name: "SearchFolio Team" }],

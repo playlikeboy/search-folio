@@ -234,23 +234,7 @@ function AllTab() {
         </ResultCard>
       </motion.div>
 
-      {/* 2. People Also Ask (Accordion) */}
-      <div className="mb-8 border-y border-border/40 py-2">
-        <h3 className="text-[20px] text-[#202124] dark:text-[#e8eaed] font-normal px-0 mb-3 ml-0">People also ask</h3>
-        {peopleAlsoAsk.map((item, i) => (
-          <div key={i} className="py-2.5 px-0 flex justify-between cursor-pointer hover:bg-transparent border-t first:border-t-0 border-border/20 group hover:bg-secondary/10"
-            onClick={() => toggleQuestion(item.q)}>
-            <span className="text-[14px] text-[#202124] dark:text-[#e8eaed] group-hover:underline flex-1">{item.q}</span>
-            <div className="min-w-[40px] flex justify-end">
-              <span className="p-2 rounded-full bg-secondary/50 dark:bg-[#303134]">
-                <ChevronDown className={cn("h-4 w-4 text-[#70757a] dark:text-[#9aa0a6] transition-transform duration-200", expandedQuestion === item.q ? "rotate-180" : "")} />
-              </span>
-            </div>
-          </div>
-        ))}
-        {/* Expanded Answers outside the mapped div to avoid layout shifts inside the clickable area? No, putting it inside is classic accordion. */}
-        {/* Wait, the map above doesn't render the answer. Fixed below. */}
-      </div>
+
       {/* Re-rendering map correctly for Accordion functionality */}
       <div className="mb-8 border-y border-border/40 py-0">
         <h3 className="text-[20px] text-[#202124] dark:text-[#e8eaed] font-normal py-4 cursor-default">People also ask</h3>

@@ -31,7 +31,7 @@ export const siteConfig = {
     // Social links
     socials: {
         twitter: "https://twitter.com/shaswatraj",
-        github: "https://github.com/shaswatraj",
+        github: "https://github.com/sh20raj",
         linkedin: "https://linkedin.com/in/shaswatraj",
         email: "mailto:hello@sh20raj.github.io",
     },
@@ -53,7 +53,7 @@ export const projectsConfig = [
     {
         name: "SearchFolio",
         description: "A portfolio that looks like Google Search.",
-        url: "https://github.com/shaswatraj/searchfolio",
+        url: "https://github.com/sh20raj/searchfolio",
         stars: 124,
         forks: 12,
         techStack: ["Next.js", "Tailwind", "TypeScript"],
@@ -61,7 +61,7 @@ export const projectsConfig = [
     {
         name: "FinScope",
         description: "Advanced financial calculators suite for professionals.",
-        url: "https://github.com/shaswatraj/finscope",
+        url: "https://github.com/sh20raj/finscope",
         stars: 89,
         forks: 5,
         techStack: ["React", "Charts.js", "Supabase"],
