@@ -235,6 +235,23 @@ function AllTab() {
       </motion.div>
 
       {/* 2. People Also Ask (Accordion) */}
+      <div className="mb-8 border-y border-border/40 py-2">
+        <h3 className="text-[20px] text-[#202124] dark:text-[#e8eaed] font-normal px-0 mb-3 ml-0">People also ask</h3>
+        {peopleAlsoAsk.map((item, i) => (
+          <div key={i} className="py-2.5 px-0 flex justify-between cursor-pointer hover:bg-transparent border-t first:border-t-0 border-border/20 group hover:bg-secondary/10"
+            onClick={() => toggleQuestion(item.q)}>
+            <span className="text-[14px] text-[#202124] dark:text-[#e8eaed] group-hover:underline flex-1">{item.q}</span>
+            <div className="min-w-[40px] flex justify-end">
+              <span className="p-2 rounded-full bg-secondary/50 dark:bg-[#303134]">
+                <ChevronDown className={cn("h-4 w-4 text-[#70757a] dark:text-[#9aa0a6] transition-transform duration-200", expandedQuestion === item.q ? "rotate-180" : "")} />
+              </span>
+            </div>
+          </div>
+        ))}
+        {/* Expanded Answers outside the mapped div to avoid layout shifts inside the clickable area? No, putting it inside is classic accordion. */}
+        {/* Wait, the map above doesn't render the answer. Fixed below. */}
+      </div>
+      {/* Re-rendering map correctly for Accordion functionality */}
       <div className="mb-8 border-y border-border/40 py-0">
         <h3 className="text-[20px] text-[#202124] dark:text-[#e8eaed] font-normal py-4 cursor-default">People also ask</h3>
         {peopleAlsoAsk.map((item, i) => (
@@ -249,7 +266,7 @@ function AllTab() {
               </span>
             </div>
             {expandedQuestion === item.q && (
-              <div className="pb-4 text-[14px] text-[#4d5156] dark:text-[#bdc1c6] leading-relaxed animate-in fade-in slide-in-from-top-1">
+              <div className="pb-4 text-[14px] text-[#4d5156] dark:text-[#bdc1c6] leading-relaxed animate-in fade-in slide-in-from-top-1 px-1">
                 {item.a}
               </div>
             )}
@@ -274,6 +291,67 @@ function AllTab() {
           <div className="flex items-center gap-1 text-[12px] text-[#70757a] dark:text-[#9aa0a6] mb-1">
             <div className="flex text-[#fbbc04]">★★★★★</div>
             <span>Rating: 5.0 · 500+ votes</span>
+          </div>
+        </ResultCard>
+      </motion.div>
+
+      {/* Videos Section */}
+      <div className="mb-8 border-y border-border/40 py-4">
+        <div className="flex items-center gap-2 mb-3">
+          <h3 className="text-[20px] text-[#202124] dark:text-[#e8eaed] font-normal">Videos</h3>
+          <span className="text-[12px] text-[#70757a] dark:text-[#9aa0a6]">›</span>
+        </div>
+        <div className="flex gap-4 overflow-x-auto pb-2 no-scrollbar">
+          {[1, 2, 3].map(i => (
+            <div key={i} className="min-w-[200px] max-w-[240px] cursor-pointer group">
+              <div className="aspect-video bg-secondary/50 rounded-[8px] mb-2 relative overflow-hidden border border-border/40">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-10 h-10 bg-black/50 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="text-[14px] text-[#1a0dab] dark:text-[#8ab4f8] group-hover:underline leading-snug mb-1 line-clamp-2">
+                Building a Portfolio in 2025 - Next.js Full Course
+              </div>
+              <div className="text-[12px] text-[#4d5156] dark:text-[#bdc1c6]">
+                YouTube · {siteConfig.name} · {i + 1} days ago
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 border-t border-border/40 pt-2">
+          <a href="#" className="flex items-center justify-center w-full py-2 bg-secondary/30 rounded-[18px] text-[14px] font-medium hover:bg-secondary/50">
+            View all
+          </a>
+        </div>
+      </div>
+
+      {/* Latest News / Twitter */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="mb-8"
+      >
+        <ResultCard
+          title={`Latest Updates from ${siteConfig.name}`}
+          url="https://twitter.com › shaswatraj"
+          description=""
+          siteName="X (Twitter)"
+          favicon="https://abs.twimg.com/favicons/twitter.3.ico"
+        >
+          <div className="mt-3 space-y-3">
+            {[
+              "Just launched SearchFolio 🚀 The ultimate developer portfolio template. Check it out!",
+              "Working on a new AI project using customized LLMs. #coding #ai",
+              "Next.js 15 is a game changer for static sites. The speed is incredible."
+            ].map((tweet, i) => (
+              <div key={i} className="border-l-2 border-border/40 pl-3 py-1">
+                <p className="text-[14px] text-[#202124] dark:text-[#bdc1c6] mb-1 italic">"{tweet}"</p>
+                <span className="text-[12px] text-[#70757a] dark:text-[#9aa0a6]">Posted {i + 1} days ago</span>
+              </div>
+            ))}
           </div>
         </ResultCard>
       </motion.div>

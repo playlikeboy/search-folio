@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "pages:build": "npx @cloudflare/next-on-pages",
-    "deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static"
+    "deploy": "rm -rf .next out && npm run build && wrangler pages deploy out --project-name=searchfolio-demo --commit-dirty=true"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
